@@ -28,9 +28,11 @@ def text_error_check(text_lines):
             critical_lines.append(line)
     return error_lines, critical_lines
 
+
+#Takes a file extension, reads the contents, and writes the Error and Critical Lines to a .txt file
 def generate_report(log_file_ext):
     log_file_contents = read_file(log_file_ext)
-    report_file_name = log_file_ext.replace(".txt", "_error_report.txt")
+    report_file_name = "./reports/" + log_file_ext.replace(".txt", "_error_report.txt")
     
     report_file = open(report_file_name, "a")
 
