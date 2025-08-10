@@ -30,16 +30,31 @@ def text_error_check(text_lines):
 
 def generate_report(log_file_ext):
     log_file_contents = read_file(log_file_ext)
+    report_file_name = log_file_ext.replace(".txt", "_error_report.txt")
+    
+    report_file = open(report_file_name, "a")
+
     error_lines, critical_lines = text_error_check(log_file_contents)
     print("GENERATING REPORT FOR: " + log_file_ext)
+    report_file.write("GENERATING REPORT FOR: " + log_file_ext +"\n")
     print("===================")
+    report_file.write("===================\n")
     print("Total Error Messages: ", len(error_lines))
+    report_file.write(f"Total Error Messages: {len(error_lines)}\n")
     for error_line in error_lines:
         print(error_line)
+        report_file.write(f"{error_line}\n")
     print("===================")
+    report_file.write("===================\n")
     print("Total Critical Messages: ", len(critical_lines))
+    report_file.write(f"Total Critical Messages: {len(critical_lines)}\n")
     for critical_line in critical_lines:
         print(critical_line)
+        report_file.write(f"{critical_line}\n")
+
+    report_file.write("End of report\n")
+    report_file.write("===================\n")
+    report_file.close()
     
 
 generate_report("test.txt")
