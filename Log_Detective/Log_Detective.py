@@ -28,7 +28,18 @@ def text_error_check(text_lines):
             critical_lines.append(line)
     return error_lines, critical_lines
 
-
+def generate_report(log_file_ext):
+    log_file_contents = read_file(log_file_ext)
+    error_lines, critical_lines = text_error_check(log_file_contents)
+    print("GENERATING REPORT FOR: " + log_file_ext)
+    print("===================")
+    print("Total Error Messages: ", len(error_lines))
+    for error_line in error_lines:
+        print(error_line)
+    print("===================")
+    print("Total Critical Messages: ", len(critical_lines))
+    for critical_line in critical_lines:
+        print(critical_line)
     
 
-print(read_file("test.txt"))
+generate_report("test.txt")
